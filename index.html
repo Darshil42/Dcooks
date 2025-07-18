@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D-cooks</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+  <header>
+    <h1>D-cooks</h1>
+    <p class="tagline">A curated gallery of flavors I've captured</p>
+  </header>
+
+  <main>
+    <section class="carousel-section">
+      <div class="carousel-container" id="carousel1">
+        <div class="carousel-caption" id="caption1"></div>
+      </div>
+      <div class="carousel-container" id="carousel2">
+        <div class="carousel-caption" id="caption2"></div>
+      </div>
+      <div class="carousel-container" id="carousel3">
+        <div class="carousel-caption" id="caption3"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>bythedisciples</p>
+  </footer>
+
+  <script>
+    function preloadImages(images) {
+      images.forEach(img => {
+        const i = new Image();
+        i.src = img.src;
+      });
+    }
+
+    function setupCarousel(containerId, images, captionId) {
+      const container = document.getElementById(containerId);
+      const caption = document.getElementById(captionId);
+      images.forEach((imgData, index) => {
+        const img = document.createElement('img');
+        img.src = imgData.src;
+        img.alt = imgData.name;
+        img.classList.add('carousel-image');
+        if (index === 0) img.classList.add('active');
+        container.insertBefore(img, caption);
+      });
+    }
+
+    function startCarousel(containerId, images, captionId, delay) {
+      let index = 0;
+      const container = document.getElementById(containerId);
+      const imgs = container.querySelectorAll('.carousel-image');
+      const caption = document.getElementById(captionId);
+
+      function showSlide() {
+        imgs.forEach(img => img.classList.remove('active'));
+        imgs[index].classList.add('active');
+        caption.textContent = images[index].name;
+        index = (index + 1) % images.length;
+      }
+
+      showSlide();
+      setInterval(showSlide, delay);
+    }
+
+    const images1 = [
+  { src: "images/food1.jpg", name: "High protein CORNSALAD" },
+  { src: "images/food2.jpg", name: "Sugar free Rabdi" },
+  { src: "images/food3.jpg", name: "Whole Wheat Biscuits" },
+  { src: "images/food4.jpg", name: "High protein mango ice cream" },
+  { src: "images/food5.jpg", name: "Paneer Ghotala" },
+  { src: "images/food6.jpg", name: "Protein pasta" },
+  { src: "images/food7.jpg", name: "Chickpea bowl" },
+  { src: "images/food8.jpg", name: "Roti Nachos" },
+  { src: "images/food9.jpg", name: "Paneer+QUINOA" },
+  { src: "images/food10.jpg", name: "Yogurt bowl" },
+  { src: "images/food11.jpg", name: "Moong IDLI" },
+  { src: "images/food12.jpg", name: "Corn Soup" },
+  { src: "images/food13.jpg", name: "Burrito Bowl" },
+  { src: "images/food14.jpg", name: "Aloo Paratha" },
+  { src: "images/food15.jpg", name: "Veggies+QUINOA" },
+  { src: "images/food16.jpg", name: "Veggies+Seeds" },
+  { src: "images/food17.jpg", name: "Chickpeas+QUINOA" },
+  { src: "images/food18.jpg", name: "High Protein Tikki" },
+  { src: "images/food19.jpg", name: "Paneer+Cauliflower" },
+  { src: "images/food20.jpg", name: "Masala Popcorn" },
+  { src: "images/food21.jpg", name: "High Protein Chocolate Mousse" },
+  { src: "images/food22.jpg", name: "Chinise Salad bowl" },
+  { src: "images/food23.jpg", name: "Bhindi Masala" },
+  { src: "images/food24.jpg", name: "Jamun+Mango Pudding" },
+  { src: "images/food25.jpg", name: "Pavbhaji" },
+  { src: "images/food26.jpg", name: "Mango Pudding" },
+  { src: "images/food27.jpg", name: "R&W dhokla" },
+  { src: "images/food28.jpg", name: "Manchurian" },
+  { src: "images/food29.jpg", name: "Strawberry Smoothie"},
+  { src: "images/food30.jpg", name: "Paneer Makhni" },
+];
+   const images2 = [
+  { src: "images/food31.jpg", name: "Paneer Wrap" },
+  { src: "images/food32.jpg", name: "French Fries" },
+  { src: "images/food33.jpg", name: "Paneer Bhurji" },
+  { src: "images/food34.jpg", name: "Avocado Toast" },
+  { src: "images/food35.jpg", name: "Paneer+Rice" },
+  { src: "images/food36.jpg", name: "Fried Rice" },
+  { src: "images/food37.jpg", name: "Fried Rice" },
+  { src: "images/food38.jpg", name: "Paneer+Rice" },
+  { src: "images/food39.jpg", name: "Sanghai Paneer Chilli" },
+  { src: "images/food40.jpg", name: "Paneer+Veggies" },
+  { src: "images/food41.jpg", name: "Strawberry Jam" },
+  { src: "images/food42.jpg", name: "Paneer Butter Masala" },
+  { src: "images/food43.jpg", name: "Dhokla" },
+  { src: "images/food44.jpg", name: "Peanut butter Chocolate" },
+  { src: "images/food45.jpg", name: "Pancake"},
+  { src: "images/food46.jpg", name: "Cheesy Chickpeas" },
+  { src: "images/food47.jpg", name: "Paneer+Veggies" },
+  { src: "images/food48.jpg", name: "Yogurt Bowl" },
+  { src: "images/food49.jpg", name: "Frankie" },
+  { src: "images/food50.jpg", name: "Healthy Pancake" },
+  { src: "images/food51.jpg", name: "Gajar Halwa" },
+  { src: "images/food52.jpg", name: "Matar Paneer" },
+  { src: "images/food53.jpg", name: "Aloo Matar" },
+  { src: "images/food54.jpg", name: "Chole Masala" },
+  { src: "images/food55.jpg", name: "Cheesy Paneer Bhurji"},
+  { src: "images/food56.jpg", name: "Pani Puri" },
+  { src: "images/food57.jpg", name: "Cheesy Paneer Bhurji+Roti Nachos" },
+  { src: "images/food58.jpg", name: "Besan Chilla" },
+  { src: "images/food59.jpg", name: "Chole Chawal" },
+  { src: "images/food60.jpg", name: "Cheesy Paneer Bites" },
+  
+  // ... up to food70.jpg
+];
+
+const images3 = [
+  { src: "images/food61.jpg", name: "Uttapam" },
+  { src: "images/food62.jpg", name: "Fried Rice" },
+  { src: "images/food63.jpg", name: "Sahi Paneer" },
+  { src: "images/food64.jpg", name: "Chilli Paneer" },
+  { src: "images/food65.jpg", name: "Rabdi" },
+  { src: "images/food66.jpg", name: "Khaman" },
+  { src: "images/food67.jpg", name: "Kanda Bhajiya" },
+  { src: "images/food68.jpg", name: "Corn Bowl" },
+  { src: "images/food69.jpg", name: "Betroot Raita" },
+  { src: "images/food70.jpg", name: "Gajar Halwa" },
+  { src: "images/food71.jpg", name: "Mango Smoothie Bowl" },
+  { src: "images/food72.jpg", name: "Yogurt+Seeds" },
+  { src: "images/food73.jpg", name: "Fried Rice" },
+  { src: "images/food74.jpg", name: "Dahi Puri" },
+  { src: "images/food75.jpg", name: "Strawberry Smoothie" },
+  { src: "images/food76.jpg", name: "Fruit+Seeds" },
+  { src: "images/food77.jpg", name: "Tortilla Wrap" },
+  { src: "images/food78.jpg", name: "Tortilla Wrap" },
+  { src: "images/food79.jpg", name: "Red Sauce Pasta" },
+  { src: "images/food80.jpg", name: "Sahi Paneer" },
+  { src: "images/food81.jpg", name: "Spaghetti" },
+  { src: "images/food82.jpg", name: "Pizza" },
+  { src: "images/food83.jpg", name: "Chia Pudding" },
+  { src: "images/food84.jpg", name: "Pohe" },
+  { src: "images/food85.jpg", name: "Matar Paneer" },
+  { src: "images/food86.jpg", name: "Paneer Wrap" },
+  { src: "images/food87.jpg", name: "Rava Chilla" },
+  { src: "images/food88.jpg", name: "Pasta" },
+  { src: "images/food89.jpg", name: "Paneer Wrap" },
+  { src: "images/food90.jpg", name: "Monaco" },
+  { src: "images/food91.jpg", name: "Rajma Masala" },
+
+  // ... up to food110.jpg
+];
+    preloadImages([...images1, ...images2, ...images3]);
+
+    setupCarousel('carousel1', images1, 'caption1');
+    setupCarousel('carousel2', images2, 'caption2');
+    setupCarousel('carousel3', images3, 'caption3');
+
+    startCarousel('carousel1', images1, 'caption1', 6000);
+    setTimeout(() => startCarousel('carousel2', images2, 'caption2', 6000), 2000);
+    setTimeout(() => startCarousel('carousel3', images3, 'caption3', 6000), 4000);
+  </script>
+</body>
+</html>
